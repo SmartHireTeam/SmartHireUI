@@ -26,29 +26,29 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     path: '/',
     icon: 'home',
   },
+  // {
+  //   title: 'Profile (404)',
+  //   path: '/user',
+  //   icon: 'account',
+  // },
+  // {
+  //   title: 'About',
+  //   path: '/about',
+  //   icon: 'info',
+  // },
   {
-    title: 'Profile (404)',
-    path: '/user',
-    icon: 'account',
-  },
-  {
-    title: 'About',
-    path: '/about',
-    icon: 'info',
-  },
-  {
-    title: 'Resume',
+    title: 'Manage Profiles',
     path: '/resume',
-    icon: 'info',
+    icon: '',
   },
   {
-    title: 'JD Management',
+    title: 'Manage JD',
     path: '/jdmgmt',
     icon: 'info',
   },
 
   {
-    title: 'Document Management',
+    title: 'Dashbaord',
     path: '/dcmgmt',
     icon: 'info',
   },
