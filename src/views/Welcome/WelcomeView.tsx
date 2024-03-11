@@ -1,21 +1,39 @@
-import { Typography } from '@mui/material';
-import { AppLink, AppView } from '../../components';
+import React from 'react';
+import { Card, CardContent, Typography, Grid, Paper, makeStyles } from '@material-ui/core';
+import './Welcome.css'
 
-/**
- * Renders "Welcome" view
- * url: /
- * @page Welcome
- */
-const WelcomeView = () => {
+const useStyles = makeStyles((theme) => ({
+  root: {
+    flexGrow: 1,
+  },
+  paper: {
+    padding: theme.spacing(2),
+    textAlign: 'center',
+    color: theme.palette.text.secondary,
+  },
+}));
+
+const WelcomeView: React.FC = () => {
+
+  const classes = useStyles();
+
   return (
-    <AppView>
-      <Typography variant="h4">Welcome to React App with MUI</Typography>
+    <Grid container spacing={2}>
+    <Grid item xs={4}>
+      <Typography className="card">12</Typography>
+    
 
-      <div>This is Welcome page, put your content here....</div>
-      <div>
-        Take a look on samples of components at <AppLink to="/about">About Page</AppLink>
-      </div>
-    </AppView>
+    </Grid>
+    <Grid item xs={4}>
+    <Typography>4</Typography>
+    </Grid>
+    <Grid item xs={4}>
+    <Typography>4</Typography>
+    </Grid>
+    <Grid item xs={8}>
+    <Typography>8</Typography>
+    </Grid>
+  </Grid>
   );
 };
 

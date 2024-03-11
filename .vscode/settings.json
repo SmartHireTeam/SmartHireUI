@@ -1,0 +1,4 @@
+{
+    "appService.defaultWebAppToDeploy": "/subscriptions/b94a1270-7800-4ffd-976d-e9036277350f/resourceGroups/DefaultResourceGroup-CUS/providers/Microsoft.Web/sites/SmartHireUI",
+    "appService.deploySubpath": "build"
+}

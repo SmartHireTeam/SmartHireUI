@@ -17,7 +17,7 @@ const TopBar: FunctionComponent<Props> = ({ endNode, startNode, title = '', ...r
       component="div"
       sx={
         {
-          // boxShadow: 'none', // Uncomment to hide shadow
+          boxShadow: 'none', // Uncomment to hide shadow
         }
       }
       {...restOfProps}

@@ -15,7 +15,7 @@ import TopBar from './TopBar';
 import SideBar from './SideBar';
 
 // TODO: change to your app name or other word
-const TITLE_PRIVATE = '_TITLE_ app'; // Title for pages after authentication
+const TITLE_PRIVATE = 'Smart Hire'; // Title for pages after authentication
 
 /**
  * SideBar navigation items with links
@@ -34,6 +34,22 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
   {
     title: 'About',
     path: '/about',
+    icon: 'info',
+  },
+  {
+    title: 'Resume',
+    path: '/resume',
+    icon: 'info',
+  },
+  {
+    title: 'JD Management',
+    path: '/jdmgmt',
+    icon: 'info',
+  },
+
+  {
+    title: 'Document Management',
+    path: '/dcmgmt',
     icon: 'info',
   },
 ];

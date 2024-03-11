@@ -3,8 +3,8 @@
   "version": "2.1.19",
   "description": "_DESCRIPTION_",
   "author": {
-    "name": "Anton Karpenko",
-    "email": "i@karpolan.com",
+    "name": "Sudarshan",
+    "email": "Log2Sudarh@gmail.com",
     "url": "https://karpolan.com"
   },
   "private": true,
@@ -30,13 +30,17 @@
     "test": "react-scripts test"
   },
   "dependencies": {
-    "@emotion/react": "latest",
-    "@emotion/styled": "latest",
+    "@emotion/react": "^11.11.4",
+    "@emotion/styled": "^11.11.0",
+    "@material-ui/core": "^4.12.4",
+    "@material-ui/icons": "^4.11.3",
     "@mui/icons-material": "latest",
-    "@mui/material": "latest",
+    "@mui/material": "^5.15.11",
+    "axios": "^1.6.7",
     "date-fns": "latest",
-    "react": "latest",
-    "react-dom": "latest",
+    "firebase": "^10.8.1",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-router-dom": "latest",
     "react-scripts": "latest",
     "validate.js": "latest",

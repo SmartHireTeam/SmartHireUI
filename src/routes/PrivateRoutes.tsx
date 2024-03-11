@@ -4,6 +4,9 @@ import { NotFoundView } from '../views';
 import AboutView from '../views/About';
 import DevView from '../views/Dev';
 import WelcomeView from '../views/Welcome';
+import ResumeUploader from '../views/DocumentsMgmt/ResumeUploader';
+import JDManagement from '../views/DocumentsMgmt/JDManagement';
+import DocumentManagement from '../views/DocumentsMgmt/DocumentManagement';
 
 /**
  * List of routes available  for authenticated users
@@ -23,6 +26,10 @@ const PrivateRoutes = () => {
         <Route path="about" element={<AboutView />} />
         {process.env.REACT_APP_DEBUG && <Route path="dev" element={<DevView />} />}
         <Route path="*" element={<NotFoundView />} />
+        <Route path="resume" element={<ResumeUploader />} />
+        <Route path="jdmgmt" element={<JDManagement />} />
+        <Route path="dcmgmt" element={<DocumentManagement />} />       
+        
       </Routes>
     </PrivateLayout>
   );
