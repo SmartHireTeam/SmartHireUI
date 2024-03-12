@@ -1,147 +1,123 @@
-// JobDescriptionManager.tsx
-
-import React, { useState, useEffect } from 'react';
-import { Button, TextField, Typography, Paper, Grid } from '@material-ui/core';
-import { Add as AddIcon, Save as SaveIcon, Delete as DeleteIcon } from '@material-ui/icons';
+import { Divider } from '@mui/material';
 import axios from 'axios';
-
-interface JobDescription {
-  id: number;
-  jobCode: string;
-  jobDomain: string;
-  jobRequisitionId: string;
-  jobDescription: string;
-}
+import React, { useState } from 'react';
+import { Button, Container } from 'react-bootstrap';
+import Col from 'react-bootstrap/Col';
+import Form from 'react-bootstrap/Form';
+import Row from 'react-bootstrap/Row';
 
 const JDManagement: React.FC = () => {
-  const [jobDescriptions, setJobDescriptions] = useState<JobDescription[]>([]);
-  const [formData, setFormData] = useState<Partial<JobDescription>>({});
-  const [editingId, setEditingId] = useState<number | null>(null);
+  const [selectedFile, setSelectedFile] = useState<File | null>(null);
 
-  useEffect(() => {
-    // Fetch job descriptions when component mounts
-    fetchJobDescriptions();
-  }, []);
-
-  const fetchJobDescriptions = async () => {
-    try {
-      const response = await axios.get('/api/job-descriptions');
-      setJobDescriptions(response.data);
-    } catch (error) {
-      console.error('Error fetching job descriptions:', error);
+  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+    if (event.target.files && event.target.files.length > 0) {
+      setSelectedFile(event.target.files[0]);
     }
   };
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-  };
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
-    try {
-      if (editingId) {
-        await axios.put(`/api/job-descriptions/${editingId}`, formData);
-      } else {
-        await axios.post('/api/job-descriptions', formData);
+  const handleUpload = async () => {
+    if (selectedFile) {
+      const formData = new FormData();
+      formData.append('file', selectedFile);
+      try {
+        const response = await axios.post('YOUR_API_ENDPOINT', formData, {
+          headers: {
+            'Content-Type': 'multipart/form-data',
+          },
+        });
+        console.log('Upload successful', response.data);
+      } catch (error) {
+        console.error('Error uploading file', error);
       }
-      setFormData({});
-      setEditingId(null);
-      fetchJobDescriptions();
-    } catch (error) {
-      console.error('Error saving job description:', error);
+    } else {
+      console.error('No file selected');
     }
   };
 
-  const handleEdit = (id: number) => {
-    const jobDesc = jobDescriptions.find(desc => desc.id === id);
-    if (jobDesc) {
-      setFormData(jobDesc);
-      setEditingId(id);
+  const handleDrop = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
+    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
+      setSelectedFile(event.dataTransfer.files[0]);
     }
   };
 
-  const handleDelete = async (id: number) => {
-    try {
-      await axios.delete(`/api/job-descriptions/${id}`);
-      fetchJobDescriptions();
-    } catch (error) {
-      console.error('Error deleting job description:', error);
-    }
+  const handleDragOver = (event: React.DragEvent<HTMLDivElement>) => {
+    event.preventDefault();
+    event.stopPropagation();
   };
 
   return (
-    <div>
-      <Typography variant="h5">Job Descriptions</Typography>
-      <form onSubmit={handleSubmit}>
-        <Grid container spacing={2}>
-          <Grid item xs={3}>
-            <TextField
-              name="jobCode"
-              label="Job Code"
-              value={formData.jobCode || ''}
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              name="jobDomain"
-              label="Job Domain"
-              value={formData.jobDomain || ''}
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <TextField
-              name="jobRequisitionId"
-              label="Job Requisition ID"
-              value={formData.jobRequisitionId || ''}
-              onChange={handleInputChange}
-              fullWidth
-            />
-          </Grid>
-          <Grid item xs={9}>
-            <TextField
-              name="jobDescription"
-              label="Job Description"
-              value={formData.jobDescription || ''}
-              onChange={handleInputChange}
-              multiline
-              fullWidth
-              rows={4}
-            />
-          </Grid>
-          <Grid item xs={3}>
-            <Button
-              type="submit"
-              variant="contained"
-              color="primary"
-              startIcon={editingId ? <SaveIcon /> : <AddIcon />}
-            >
-              {editingId ? 'Update' : 'Save'}
-            </Button>
-          </Grid>
-        </Grid>
-      </form>
-      <div>
-        {jobDescriptions.map(jobDesc => (
-          <Paper key={jobDesc.id} elevation={3} className="job-desc-card">
-            <Typography variant="h6">{jobDesc.jobCode}</Typography>
-            <Typography variant="subtitle1">{jobDesc.jobDomain}</Typography>
-            <Typography variant="subtitle2">{jobDesc.jobRequisitionId}</Typography>
-            <Typography>{jobDesc.jobDescription}</Typography>
-            <Button onClick={() => handleEdit(jobDesc.id)} startIcon={<SaveIcon />}>
-              Edit
-            </Button>
-            <Button onClick={() => handleDelete(jobDesc.id)} startIcon={<DeleteIcon />}>
-              Delete
-            </Button>
-          </Paper>
-        ))}
-      </div>
-    </div>
+    <Container >
+      <Row>
+        <Col sm={12}>
+          <h2 className='Title' >Manage Job Description</h2>
+        </Col>
+      </Row>
+      <Row >
+        <Col sm={12}>
+          <Form style={{ padding: '20px' }}>
+            <Row className='mb-3'>
+              <Col xs={6}>
+                <Form.Group as={Col} controlId='formJobCode'>
+                  <Form.Label>Job Code</Form.Label>
+                  <Form.Control></Form.Control>
+                </Form.Group>
+              </Col>
+
+              <Col xs={6}>
+                <Form.Group as={Col} controlId='formDomain'>
+                  <Form.Label>Domain Name</Form.Label>
+                  <Form.Select defaultValue="Choose...">
+                    <option>Choose...</option>
+                    <option>...</option>
+                  </Form.Select>
+                </Form.Group>
+              </Col>
+            </Row>
+
+
+
+            <Row>
+              <Col xs={11}>
+                <div
+                  className="drop-area"
+                  onDrop={handleDrop}
+                  onDragOver={handleDragOver}
+                >
+                  <Form.Group controlId="formFile" className="mb-3">
+                    <Form.Label>Choose file:</Form.Label>
+                    <Form.Control type="file" onChange={handleFileChange} />
+                  </Form.Group>
+                  <Button variant="primary" onClick={handleUpload}>
+                    Upload
+                  </Button>
+                </div>
+              </Col>
+              <Col>
+              
+              </Col>
+            </Row>
+          </Form>
+        </Col>
+      </Row>
+    <hr></hr>
+      <Row className='mb-3'>
+        <Col xs={6} style={{ alignItems: 'right' }}>
+
+        </Col>
+
+        <Col xs={6}>
+          <Button variant="success" onClick={handleUpload}>
+            SUBMIT
+          </Button> &nbsp;&nbsp;&nbsp;
+          <Button variant="danger" onClick={handleUpload}>
+            CANCEL
+          </Button>
+        </Col>
+      </Row>
+
+    </Container>
   );
 };
 

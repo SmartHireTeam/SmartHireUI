@@ -26,24 +26,15 @@ const SIDE_BAR_ITEMS: Array<LinkToPage> = [
     path: '/',
     icon: 'home',
   },
-  // {
-  //   title: 'Profile (404)',
-  //   path: '/user',
-  //   icon: 'account',
-  // },
-  // {
-  //   title: 'About',
-  //   path: '/about',
-  //   icon: 'info',
-  // },
-  {
-    title: 'Manage Profiles',
-    path: '/resume',
-    icon: '',
-  },
+
   {
     title: 'Manage JD',
     path: '/jdmgmt',
+    icon: 'info',
+  },
+  {
+    title: 'Manage Profiles',
+    path: '/prpmgmt',
     icon: 'info',
   },
 

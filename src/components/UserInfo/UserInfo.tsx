@@ -16,22 +16,14 @@ interface UserInfoProps {
  */
 const UserInfo = ({ className, showAvatar = false, user, ...restOfProps }: UserInfoProps) => {
   const fullName = user?.name || [user?.nameFirst || '', user?.nameLast || ''].join(' ').trim();
-  const srcAvatar = user?.avatar ? user?.avatar : undefined;
+  const srcAvatar ="img/favicon/180x180.png" //user?.avatar ? user?.avatar : undefined;
   const userPhoneOrEmail = user?.phone || (user?.email as string);
 
   return (
     <Stack alignItems="center" minHeight="fit-content" marginBottom={2} {...restOfProps}>
       {showAvatar ? (
         <AppLink to="/user" underline="none">
-          <Avatar
-            sx={{
-              width: 64,
-              height: 64,
-              fontSize: '3rem',
-            }}
-            alt={fullName || 'User Avatar'}
-            src={srcAvatar}
-          />
+          <img src={srcAvatar} ></img>
         </AppLink>
       ) : null}
       <Typography sx={{ mt: 1 }} variant="h6">

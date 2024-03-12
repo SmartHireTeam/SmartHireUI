@@ -1,7 +1,23 @@
+.Title{
+  border-radius: 5px;
+  margin:'1px';
+ 
+  background-color: burlywood;
+  font-size: 16pt;
+  font-family: cambria;
+  text-indent:1%;
+  padding: 10px;
+  font-weight: bold;
+}
+
+.heading{
+  color:crimson;
+}
+
 .card {
     box-shadow: 0 4px 5px 0 rgba(0,0,0,0.3);
-    width: 98%;
-    text-align: center;
+    width: 99%;
+    text-align: left;
     border-radius: 5px;
     overflow: hidden;
     font-size: 11pt;
@@ -20,7 +36,7 @@
     background-color: #ffffff;
     border: 1px solid #e0e0e0;
     border-radius: 8px;
-    padding: 20px;
+    padding: 10px;
     margin: 10px;
     /* Add more styles as needed */
 }
